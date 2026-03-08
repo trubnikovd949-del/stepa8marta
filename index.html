@@ -7,15 +7,16 @@
     <style>
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Добавил отступы */
             font-family: 'Arial', sans-serif;
-            background-color: #ffe6ea; /* Нежно-розовый фон */
+            background-color: #ffe6ea;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Изменил с center на flex-start */
             min-height: 100vh;
             text-align: center;
-            overflow: hidden;
+            overflow-y: auto; /* Разрешил вертикальную прокрутку */
+            overflow-x: hidden; /* Запретил горизонтальную */
         }
 
         /* Экран с кнопкой */
@@ -25,6 +26,8 @@
             align-items: center;
             justify-content: center;
             transition: opacity 1s ease;
+            min-height: 80vh; /* Чтобы кнопка была примерно по центру */
+            width: 100%;
         }
 
         /* Стиль кнопки в виде цветов */
@@ -69,13 +72,14 @@
             align-items: center;
             justify-content: center;
             background: white;
-            padding: 20px;
+            padding: 30px 20px; /* Увеличил padding */
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             max-width: 90%;
             width: 500px;
             border: 5px solid #ffb6c1;
             animation: popIn 0.8s ease;
+            margin: 20px auto; /* Отступы сверху и снизу */
         }
 
         @keyframes popIn {
@@ -116,6 +120,19 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            body {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -160,6 +177,9 @@
                 
                 const cardScreen = document.getElementById('card-screen');
                 cardScreen.style.display = 'flex';
+                
+                // Прокручиваем страницу вверх после открытия открытки
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 
                 // 2. Запускаем видео и замедляем его
                 const video = document.getElementById('greeting-video');
